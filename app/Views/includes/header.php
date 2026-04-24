@@ -38,11 +38,11 @@ $search = $search ?? '';
   <meta property="og:description" content="<?= esc($seoDescription) ?>" />
   <meta property="og:url" content="<?= esc($canonicalUrl) ?>" />
   <meta property="og:site_name" content="<?= esc($siteName) ?>" />
-
+  <meta name="naver-site-verification" content="e4e08393e9f171df210dd420059bd4d537f97cc6" />
   <script type="application/ld+json">
 <?= json_encode($jsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
   </script>
-
+ 
   <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=c3hsihbnx3"></script>
 
   <style>
