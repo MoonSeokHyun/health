@@ -75,14 +75,12 @@
 </footer>
 </div>
 
-<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
 <script type="text/javascript">
-if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
-    if (!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "730e1004015aa8";
-    if (window.wcs) {
-        wcs_do();
-    }
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "9b158284b08188";
+if(window.wcs) {
+  wcs_do();
 }
 </script>
 </body>
