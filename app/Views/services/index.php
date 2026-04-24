@@ -17,56 +17,101 @@ echo view('includes/header', [
 ?>
 
 <main class="container">
+    <!-- 상단 광고 -->
+    <div style="margin-bottom: 2rem;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6686738239613464"
+             data-ad-slot="1204098626"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <div class="breadcrumb">
         <a href="<?= site_url('/') ?>">홈</a>
         <span>›</span>
         <span><?= esc($config['title'] ?? '목록') ?></span>
     </div>
 
-    <div class="section-block">
-        <h1 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">
-            <?= $search !== '' ? '"' . esc($search) . '" 검색 결과' : esc($config['title'] ?? '목록') ?>
-        </h1>
-        <?php if ($search === '' && !empty($config['subtitle'])): ?>
-            <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem;"><?= esc($config['subtitle']) ?></p>
-        <?php endif; ?>
+    <div class="section-block" style="padding: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; border-bottom: 2px solid var(--primary); padding-bottom: 1rem;">
+            <h1 style="font-size: 1.75rem; font-weight: 900; color: var(--text);">
+                <?= $search !== '' ? '"' . esc($search) . '" 검색 결과' : esc($config['title'] ?? '목록') ?>
+            </h1>
+            <span style="font-size: 0.9rem; color: var(--muted); font-weight: 500;">
+                전국 데이터를 실시간으로 제공합니다
+            </span>
+        </div>
 
         <?php if (empty($items)): ?>
-            <p style="text-align: center; padding: 3rem 0; color: var(--muted); font-size: 1.1rem;">
-                검색 결과가 없습니다.<br>
-                <span style="font-size: 0.9rem;">다른 검색어로 시도해보세요.</span>
-            </p>
+            <div style="text-align: center; padding: 5rem 0;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                <p style="color: var(--muted); font-size: 1.125rem;">검색 결과가 없습니다. 다른 키워드로 검색해 보세요.</p>
+            </div>
         <?php else: ?>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
                 <?php foreach ($items as $item): ?>
-                    <a href="<?= site_url($type . '/' . $item['id']) ?>" style="display: block; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; position: relative;" 
-                       onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow)';" 
-                       onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
-                        <div style="display: flex; justify-content: flex-start; margin-bottom: 0.75rem;">
-                            <span style="background: <?= ($item['business_status_name'] ?? '') === '정상영업' ? '#dcfce7' : '#fee2e2' ?>; color: <?= ($item['business_status_name'] ?? '') === '정상영업' ? '#166534' : '#991b1b' ?>; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.625rem; border-radius: 999px;">
+                    <a href="<?= site_url($type . '/' . $item['id']) ?>" class="item-card">
+                        <div style="display: flex; justify-content: flex-start; margin-bottom: 1rem;">
+                            <span class="status-badge <?= ($item['business_status_name'] ?? '') === '정상영업' ? 'status-active' : 'status-closed' ?>">
                                 <?= esc($item['business_status_name'] ?? '상태불명') ?>
                             </span>
                         </div>
-                        <h2 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); line-height: 1.4;">
+                        <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text); line-height: 1.3;">
                             <?= esc($item['business_name']) ?>
                         </h2>
-                        <p style="font-size: 0.875rem; color: var(--muted); margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                        <p style="font-size: 0.9375rem; color: var(--muted); margin-bottom: 1.25rem; min-height: 2.8rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
                             <?= esc($item['road_address'] ?: ($item['lot_address'] ?? '주소 정보 없음')) ?>
                         </p>
-                        <div style="font-size: 0.8125rem; color: var(--primary); font-weight: 600;">
-                            <?= esc($item['phone_number'] ?? '전화번호 정보 없음') ?>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--primary); font-weight: 700; border-top: 1px solid #f1f5f9; padding-top: 1rem;">
+                            <span>📞</span> <?= esc($item['phone_number'] ?? '정보 없음') ?>
                         </div>
                     </a>
                 <?php endforeach; ?>
             </div>
 
             <?php if ($pager): ?>
-                <div style="margin-top: 3rem; display: flex; justify-content: center;">
-                    <?= $pager->links() ?>
+                <div style="margin-top: 4rem;">
+                    <?= $pager->links('default', 'custom_pager') ?>
                 </div>
             <?php endif; ?>
         <?php endif; ?>
     </div>
+
+    <!-- 하단 광고 -->
+    <div style="margin-top: 3rem;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6686738239613464"
+             data-ad-slot="1204098626"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 </main>
+
+<style>
+    .item-card {
+        display: block; background: #fff; border: 1px solid var(--line); border-radius: 1.25rem; 
+        padding: 1.75rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .item-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        border-color: var(--primary);
+        background: #f0fdfa;
+    }
+    .status-badge {
+        font-size: 0.75rem; font-weight: 800; padding: 0.35rem 0.75rem; border-radius: 2rem;
+    }
+    .status-active { background: #dcfce7; color: #166534; }
+    .status-closed { background: #fee2e2; color: #991b1b; }
+
+    @media (max-width: 768px) {
+        .section-block { padding: 1.5rem !important; }
+    }
+</style>
 
 <?= view('includes/footer') ?>
