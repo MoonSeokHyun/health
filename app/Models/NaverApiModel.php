@@ -9,8 +9,8 @@ class NaverApiModel extends Model
 
     public function blog($keyword){
 
-        $client_id = "c5eleOJ1iSyifj4woKPl";
-        $client_secret = "rIvkWeqPq5";
+        $client_id = "c3hsihbnx3";
+        $client_secret = "iyBYir1BVYhy4bW5XWB1wHGfUNyOit2Pz4g413ce";
         $encText = urlencode($keyword);
         $url = "https://openapi.naver.com/v1/search/blog?query=".$encText."&display=5"; // json 결과
 
@@ -36,8 +36,8 @@ class NaverApiModel extends Model
     }
 
     public function image($keyword, $start = 1){
-        $client_id = "c5eleOJ1iSyifj4woKPl";
-        $client_secret = "rIvkWeqPq5";
+        $client_id = "c3hsihbnx3";
+        $client_secret = "iyBYir1BVYhy4bW5XWB1wHGfUNyOit2Pz4g413ce";
         $encText = urlencode($keyword);
         $url = "https://openapi.naver.com/v1/search/image?start=".$start."&query=".$encText."&display=10&sort=sim"; // json 결과
 
@@ -63,8 +63,8 @@ class NaverApiModel extends Model
     }
 
     public function news($keyword){
-        $client_id = "c5eleOJ1iSyifj4woKPl";
-        $client_secret = "rIvkWeqPq5";
+        $client_id = "c3hsihbnx3";
+        $client_secret = "iyBYir1BVYhy4bW5XWB1wHGfUNyOit2Pz4g413ce";
         $encText = urlencode($keyword);
         $url = "https://openapi.naver.com/v1/search/news?query=".$encText; // json 결과
 
@@ -100,8 +100,8 @@ class NaverApiModel extends Model
     
         $url = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode";
 
-        $clientId = "24lj4g8fug";
-        $clientSecret = "82t6USZN3Fsd2SMV8tDfAaFQAMpDWm40NPPb6o1g";
+        $clientId = "c3hsihbnx3";
+        $clientSecret = "iyBYir1BVYhy4bW5XWB1wHGfUNyOit2Pz4g413ce";
 
         $query = urlencode($address);
         $requestUrl = "$url?query=$query";
