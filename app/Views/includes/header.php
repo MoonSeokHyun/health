@@ -10,6 +10,7 @@ $seoTitle = $seoTitle ?? $defaultTitle;
 $seoDescription = $seoDescription ?? $defaultDescription;
 $seoKeywords = $seoKeywords ?? $defaultKeywords;
 $canonicalUrl = $canonicalUrl ?? current_url();
+$seoImage = $seoImage ?? base_url('favicon.ico');
 
 $jsonLd = $jsonLd ?? [
     '@context' => 'https://schema.org',
@@ -31,6 +32,7 @@ $search = $search ?? '';
   <title><?= esc($seoTitle) ?></title>
   <meta name="description" content="<?= esc($seoDescription) ?>" />
   <meta name="keywords" content="<?= esc($seoKeywords) ?>" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="<?= esc($canonicalUrl) ?>" />
 
   <meta property="og:type" content="website" />
@@ -38,7 +40,14 @@ $search = $search ?? '';
   <meta property="og:description" content="<?= esc($seoDescription) ?>" />
   <meta property="og:url" content="<?= esc($canonicalUrl) ?>" />
   <meta property="og:site_name" content="<?= esc($siteName) ?>" />
+  <meta property="og:image" content="<?= esc($seoImage) ?>" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<?= esc($seoTitle) ?>" />
+  <meta name="twitter:description" content="<?= esc($seoDescription) ?>" />
+  <meta name="twitter:image" content="<?= esc($seoImage) ?>" />
   <meta name="naver-site-verification" content="e4e08393e9f171df210dd420059bd4d537f97cc6" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6686738239613464" crossorigin="anonymous"></script>
   <script type="application/ld+json">
 <?= json_encode($jsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
   </script>

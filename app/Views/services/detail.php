@@ -103,17 +103,6 @@ echo view('includes/header', [
             </section>
             <?php endif; ?>
 
-            <!-- 중간 광고 -->
-            <div style="margin-top: 2rem;">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-6686738239613464"
-                     data-ad-slot="1204098626"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
-
             <!-- 네이버 블로그 정보 -->
             <?php if (!empty($blog['items'])): ?>
                 <section class="section-block" style="margin-top: 2rem; padding: 2rem;">

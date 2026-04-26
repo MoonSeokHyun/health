@@ -1,4 +1,13 @@
-<?= view('includes/header') ?>
+<?php
+echo view('includes/header', [
+    'seoTitle' => $seoTitle ?? null,
+    'seoDescription' => $seoDescription ?? null,
+    'seoKeywords' => $seoKeywords ?? null,
+    'canonicalUrl' => $canonicalUrl ?? null,
+    'config' => $config ?? [],
+    'type' => $type ?? 'hospitals',
+]);
+?>
 
 <main class="container">
     <!-- 메인 히어로 섹션 -->
