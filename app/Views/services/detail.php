@@ -77,8 +77,8 @@ echo view('includes/header', [
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <div style="display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; align-items: start;">
-    <div style="display: grid; gap: 14px;">
+  <div class="detail-layout" style="display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; align-items: start;">
+    <div class="detail-main" style="display: grid; gap: 14px;">
       <section class="section-block" style="padding: 22px;">
         <div class="breadcrumb" style="margin-bottom: 12px;">
           <a href="<?= site_url('/') ?>">홈</a>
@@ -90,7 +90,7 @@ echo view('includes/header', [
 
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 12px;">
           <div>
-            <h1 style="font-size: 28px; font-weight: 800; letter-spacing: -0.6px; color: var(--ink); line-height: 1.25; margin-bottom: 7px; display:flex; align-items:center; gap:8px;">
+            <h1 class="detail-title" style="font-size: 28px; font-weight: 800; letter-spacing: -0.6px; color: var(--ink); line-height: 1.25; margin-bottom: 7px; display:flex; align-items:center; gap:8px;">
               <span style="color:var(--mint);"><?= icon('hospital', ['size' => 22]) ?></span>
               <?= esc($item['business_name'] ?? '-') ?>
             </h1>
@@ -168,7 +168,7 @@ echo view('includes/header', [
               <div style="font-size: 12px; color: var(--ink4); font-weight: 700; border-bottom: 1px solid #edf4f7; padding-bottom: 8px;">
                 <?= esc($detail['label']) ?>
               </div>
-              <div style="font-size: 13px; color: var(--ink2); font-weight: 600; border-bottom: 1px solid #edf4f7; padding-bottom: 8px;">
+              <div class="detail-value-cell" style="font-size: 13px; color: var(--ink2); font-weight: 600; border-bottom: 1px solid #edf4f7; padding-bottom: 8px;">
                 <?= esc($detail['value']) ?>
               </div>
             <?php endforeach; ?>
@@ -186,14 +186,14 @@ echo view('includes/header', [
       </section>
     </div>
 
-    <aside style="display: grid; gap: 14px;">
-      <section class="section-block" style="padding: 16px;">
+    <aside class="detail-sidebar" style="display: grid; gap: 14px;">
+      <section class="section-block sidebar-card" style="padding: 16px;">
         <h2 style="font-size: 16px; font-weight: 800; margin-bottom: 10px; display:flex; align-items:center; gap:6px;"><?= icon('location', ['size' => 16]) ?>주변 <?= esc($config['title'] ?? '의료기관') ?></h2>
         <div style="display: grid; gap: 8px;">
           <?php foreach ($relatedItems as $rel): ?>
-            <a href="<?= site_url($type . '/' . $rel['id']) ?>" style="display: block; border: 1px solid var(--line); border-radius: 10px; padding: 10px;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 3px;"><?= esc($rel['business_name']) ?></div>
-              <div style="font-size: 11px; color: var(--ink3); line-height: 1.45;"><?= esc($rel['road_address'] ?: ($rel['lot_address'] ?? '')) ?></div>
+            <a class="related-item-link" href="<?= site_url($type . '/' . $rel['id']) ?>" style="display: block; border: 1px solid var(--line); border-radius: 10px; padding: 10px;">
+              <div class="related-item-name" style="font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 3px;"><?= esc($rel['business_name']) ?></div>
+              <div class="related-item-address" style="font-size: 11px; color: var(--ink3); line-height: 1.45;"><?= esc($rel['road_address'] ?: ($rel['lot_address'] ?? '')) ?></div>
             </a>
           <?php endforeach; ?>
           <?php if (empty($relatedItems)): ?>
@@ -202,7 +202,7 @@ echo view('includes/header', [
         </div>
       </section>
 
-      <section class="section-block" style="padding: 16px;">
+      <section class="section-block sidebar-card" style="padding: 16px;">
         <h2 style="font-size: 16px; font-weight: 800; margin-bottom: 10px; display:flex; align-items:center; gap:6px;"><?= icon('check', ['size' => 16]) ?>빠른 정보</h2>
         <div style="display: grid; gap: 8px;">
           <?php if (!empty($item['medical_staff_count'])): ?>
@@ -211,9 +211,9 @@ echo view('includes/header', [
               <strong style="color: var(--ink);"><?= number_format((int) $item['medical_staff_count']) ?>명</strong>
             </div>
           <?php endif; ?>
-          <div style="display: flex; justify-content: space-between; font-size: 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px;">
-            <span style="color: var(--ink4);">인허가번호</span>
-            <strong style="color: var(--ink);"><?= esc($item['management_number'] ?? '-') ?></strong>
+          <div class="quick-info-row" style="display: flex; justify-content: space-between; font-size: 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px;">
+            <span class="quick-info-label" style="color: var(--ink4);">인허가번호</span>
+            <strong class="quick-info-value" style="color: var(--ink);"><?= esc($item['management_number'] ?? '-') ?></strong>
           </div>
         </div>
       </section>
@@ -232,13 +232,74 @@ echo view('includes/header', [
 </main>
 
 <style>
+  #map {
+    position: relative;
+    z-index: 1;
+  }
+
+  .detail-title {
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+  }
+
+  .detail-layout > * {
+    min-width: 0;
+  }
+
+  .detail-sidebar {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-card {
+    position: relative;
+    z-index: 1;
+  }
+
+  .related-item-link,
+  .related-item-name,
+  .related-item-address {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .detail-value-cell,
+  .quick-info-value {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .quick-info-row {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .quick-info-value {
+    text-align: right;
+  }
+
   @media (max-width: 980px) {
-    main > div[style*='grid-template-columns: minmax(0, 1fr) 320px'] { grid-template-columns: 1fr !important; }
+    .detail-layout { grid-template-columns: 1fr !important; }
   }
 
   @media (max-width: 640px) {
     section div[style*='grid-template-columns: 140px 1fr'] { grid-template-columns: 1fr !important; }
     section div[style*='grid-template-columns: 90px 1fr'] { grid-template-columns: 1fr !important; }
+
+    .detail-title {
+      font-size: 22px !important;
+    }
+
+    .quick-info-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2px;
+    }
+
+    .quick-info-value {
+      text-align: left;
+    }
   }
 </style>
 

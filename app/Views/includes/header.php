@@ -82,12 +82,14 @@ $search = $search ?? '';
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1200;
       backdrop-filter: blur(8px);
       background: rgba(255, 255, 255, 0.93);
       border-bottom: 1px solid var(--line);
     }
     .header-inner {
+      position: relative;
+      z-index: 1201;
       max-width: var(--max);
       margin: 0 auto;
       padding: 14px 18px;
@@ -125,6 +127,8 @@ $search = $search ?? '';
     }
 
     .nav-menu {
+      position: relative;
+      z-index: 1202;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -161,7 +165,7 @@ $search = $search ?? '';
       display: none;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 6px;
-      z-index: 220;
+      z-index: 1300;
     }
     .nav-item:hover .dropdown { display: grid; }
     .nav-item.is-open .dropdown { display: grid; }
