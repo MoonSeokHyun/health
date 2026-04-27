@@ -1,50 +1,46 @@
 <style>
   .site-footer {
-    margin-top: 42px;
-    border-top: 1px solid #e2e8eb;
+    margin-top: 40px;
+    border-top: 1px solid var(--line);
     background: #fff;
   }
 
   .footer-inner {
-    max-width: 1140px;
+    max-width: var(--max);
     margin: 0 auto;
-    padding: 26px 18px 34px;
+    padding: 24px 18px 16px;
     display: grid;
-    gap: 18px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    grid-template-columns: 1.2fr 1fr 1fr;
   }
 
   .footer-title {
-    font-size: 14px;
+    font-size: 13px;
+    color: var(--ink);
     font-weight: 800;
     margin-bottom: 6px;
-    color: #1e2428;
   }
 
   .footer-inner p,
   .footer-inner li,
   .footer-inner a {
-    font-size: 13px;
-    color: #5d6670;
-    line-height: 1.6;
+    font-size: 12px;
+    color: var(--ink3);
+    line-height: 1.7;
   }
 
-  .footer-inner ul {
-    list-style: none;
-  }
+  .footer-inner ul { list-style: none; }
 
   .copyright {
-    max-width: 1140px;
+    max-width: var(--max);
     margin: 0 auto;
     padding: 0 18px 18px;
-    font-size: 12px;
-    color: #8a929b;
+    font-size: 11px;
+    color: var(--ink4);
   }
 
-  @media (max-width: 780px) {
-    .footer-inner {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 860px) {
+    .footer-inner { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -71,9 +67,8 @@
       </ul>
     </section>
   </div>
-  <p class="copyright">© 2024 MoonDilogistics. All rights reserved.</p>
+  <p class="copyright">© 2026 MoonDilogistics. All rights reserved.</p>
 </footer>
-</div>
 
 <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
 <script type="text/javascript">
